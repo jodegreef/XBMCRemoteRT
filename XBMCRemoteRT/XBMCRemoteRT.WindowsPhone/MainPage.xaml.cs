@@ -229,7 +229,7 @@ namespace XBMCRemoteRT
                 int newWakeupTime = (int)(DateTime.Now - wakeUpStart).TotalSeconds;
                 connectionItem.WakeUpTime = newWakeupTime < 5 ? connectionItem.WakeUpTime : newWakeupTime;
                 App.ConnectionsVM.UpdateConnectionItem();
-                Frame.Navigate(typeof(CoverPage));
+                Frame.Navigate(typeof(InputPage));
             }         
             SetPageState(PageStates.Ready);
         }

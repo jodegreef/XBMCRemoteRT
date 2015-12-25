@@ -21,6 +21,7 @@ using XBMCRemoteRT.Helpers;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.Phone.Devices.Notification;
+using XBMCRemoteRT.Models;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -47,9 +48,16 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
+
+            if (GlobalVariables.CurrentPlayerState == null)
+                GlobalVariables.CurrentPlayerState = new PlayerState();
+            DataContext = GlobalVariables.CurrentPlayerState;
+
+            PlayerHelper.RefreshPlayerState();
+
             DataContext = GlobalVariables.CurrentPlayerState;
             PopulateFlyout();
-            isVibrationOn = (bool)SettingsHelper.GetValue("Vibrate", false);
+            isVibrationOn = false;  //(bool)SettingsHelper.GetValue("Vibrate", false);
         }
 
         /// <summary>
